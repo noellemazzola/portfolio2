@@ -1,31 +1,36 @@
 import React from "react";
 
 
-function Form({ setInputText, toDos, settoDos, inputText }) {
+function Form({ setInputText, todos, setTodos, inputText, setStatus}) {
     const inputTextHandler = (e) => {
         console.log(e.target.value);
         setInputText(e.target.value);
     };
 
-    const submitToDoHandler = (e) => {
+    const submitTodoHandler = (e) => {
         e.preventDefault();
-        settoDos([
-            ...toDos, {text: inputText, completed: false, id: Math.random() *  1000}
+        setTodos([
+            ...todos, {text: inputText, completed: false, id: Math.random * 1000 }
         ]);
         setInputText("");
-    };
+    }
+
+    const statusHandler = (e) => {
+        setStatus(e.target.value)
+    }
 
     return (
         <form>
-            <input onChange={inputTextHandler} type= "text" className= "todo-input"/>
-            <button onSubmit={submitToDoHandler} className= "todo-button" type= "submit">
-                <i className= "fas fa-plus-square"></i>
+            
+            <input value= {inputText} onChange= {inputTextHandler} type= "text" className="todo-input" />
+            <button onClick={submitTodoHandler} className="todo-button" type= "submit">
+                <i className="fas fa-plus-square"></i>
             </button>
-            <div className= "select">
-                <select name= "todos" className= "filter-todo">
-                    <option value= "all">All</option>
-                    <option value= "completed">Completed</option>
-                    <option value= "uncompleted">Uncompleted</option>
+            <div className="select">
+                <select onChange={statusHandler} name="todos" className="filter-todo">
+                    <option value="all">All</option>
+                    <option value="completed">Completed</option>
+                    <option value="uncompleted">Uncompleted</option>
                 </select>
             </div>
         </form>
@@ -33,3 +38,4 @@ function Form({ setInputText, toDos, settoDos, inputText }) {
 };
 
 export default Form;
+// to dos in the form section are from template and are not written by Noelle
