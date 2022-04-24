@@ -1,1 +1,1 @@
-# portfolio2
+This app is a To Do list app. You can add in events and then once you finish them, you can check them off.
