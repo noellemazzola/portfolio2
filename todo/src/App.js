@@ -1,10 +1,14 @@
+import { NavigationContainer } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
+import { NativeScreenContainer } from "react-native-screens";
 import "./App.css";
 import Form from "./components/form";
 import toDoList from "./components/todo list";
+import Home from "./Home";
+
+const Stack= createStackNavigator();
 
 function App() {
-    
 
     const [inputText, setInputText] = useState("");
     const [todos, setTodos] = useState([]);
@@ -46,6 +50,13 @@ function App() {
     }
 
     return (
+        <>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={Home}/>
+                <Stack.Screen name="logIn" component= {logIn}/>
+            </Stack.Navigator>
+        </NavigationContainer>
         <div className="App">
             <header>
                 <h1>Noelle's To Do List</h1>
@@ -63,6 +74,8 @@ function App() {
                 filteredTodos= {filteredTodos}
             />
         </div>
+        </>
+        
     ) 
 }
 
